@@ -16,6 +16,18 @@ const ListProduct = () => {
     fetchInfo();
   }, []);
 
+  const removeProduct = async (id) => {
+    await fetch("http://localhost:4000/removeproduct", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }), 
+    })
+    await fetchInfo(); // Refresh the product list after removal
+  }
+
   return (
     <div className="listproduct bg-gray-100 min-h-screen p-10">
       <div className="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-lg">
@@ -36,7 +48,7 @@ const ListProduct = () => {
           {ProductDetails.map((product) => (
             <div
               key={product.id}
-              className="listproduct-format-main grid grid-cols-5 gap-4 items-center bg-white p-4 border-b border-gray-200"
+              className="listproduct-format-main grid grid-cols-5 gap-4 items-center bg-white p-4 border-b border-gray-600"
             >
               <img
                 src={product.image}
@@ -47,10 +59,12 @@ const ListProduct = () => {
               <p className="text-gray-700">{product.category}</p>
               <p className="text-gray-700">${product.new_price}</p>
               <button className="">
-                <img src={remove_icon} alt="Remove" className=" h-6 w-auto cursor-pointer" />
+                <img onClick={()=>{removeProduct(product.id)}} src={remove_icon} alt="Remove" className=" h-6 w-auto cursor-pointer" />
               </button>
             </div>
+            
           ))}
+          
         </div>
       </div>
     </div>
