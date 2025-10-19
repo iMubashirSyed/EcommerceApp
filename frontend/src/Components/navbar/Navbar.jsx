@@ -11,9 +11,9 @@ const Navbar = () => {
         <img
           src={logo}
           alt="ShopEase Logo"
-          className="h-10 w-10 object-contain"
+          className="h-13 w-13 object-contain"
         />
-        <h1 className="text-xl font-bold text-gray-800">ShopEase</h1>
+        <h1 className="text-3xl font-bold text-gray-800">ShopEase</h1>
       </div>
 
       {/* Navigation Items */}
