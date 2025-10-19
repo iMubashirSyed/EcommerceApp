@@ -7,9 +7,10 @@ import ProductDisplay from '../Components/ProductDisplay';
 const Product = () => {
   const {all_data} = useContext(ShopContext);
   const {productId} = useParams();
-  const product = all_data.find((item) => item.id === Number(productId));
+  const product = all_data.find((item) => item._id === (productId));
   console.log("Params:", productId);
-  console.log("Data IDs:", all_data.map(p => p.id));
+  console.log("Product: ", product);
+  console.log("Data IDs:", all_data.map(p => p._id));
   
   if (!product) {
     return <div>Loading product...</div>; // or a 404 message

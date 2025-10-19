@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
+
 const Item = (props) => {
   console.log("props.id:", props.id);
-
+  const { addToCart} = useContext(ShopContext);
+  
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden transform transition duration-500 hover:scale-105">
       {" "}
@@ -17,7 +20,7 @@ const Item = (props) => {
           <span className="text-xl font-semibold text-gray-800">
             ${props.new_price}
           </span>
-          <button className="px-4 py-2 bg-pink-600 text-white text-sm font-medium rounded-lg hover:bg-pink-700 cursor-pointer">
+          <button onClick={()=>{addToCart(props.id)}} className="px-4 py-2 bg-pink-600 text-white text-sm font-medium rounded-lg hover:bg-pink-700 cursor-pointer">
             Add to Cart
           </button>
         </div>

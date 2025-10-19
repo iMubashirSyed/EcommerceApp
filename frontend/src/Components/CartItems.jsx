@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ShopContext } from "../context/ShopContext";
 import remove_icon from "../Components/assets/cart_cross_icon.png";
 
 const CartItems = () => {
   const { all_data, CartItems, removeFromCart } = useContext(ShopContext);
+
+
 
   return (
     <div className="cart-items w-[90%] mx-auto mt-10">
@@ -26,19 +28,19 @@ const CartItems = () => {
               className="cart-items-format grid grid-cols-6 gap-4 items-center bg-white p-4 border-b border-gray-200"
             >
               <img
-                src={item.productImage}
-                alt={item.productName}
+                src={item.image}
+                alt={item.name}
                 className="h-16 w-16 object-cover rounded-md"
               />
-              <p className="text-gray-700">{item.productName}</p>
-              <p className="text-gray-700">${item.price}</p>
-              <p className="text-gray-700">{CartItems[item.id]}</p>
-              <p className="text-gray-700">${item.price * CartItems[item.id]}</p>
+              <p className="text-gray-700">{item.name}</p>
+              <p className="text-gray-700">${item.new_price}</p>
+              <p className="text-gray-700">{ String(CartItems[item.id]) }</p>
+              <p className="text-gray-700">${item.new_price * CartItems[item.id] }</p>
               <button
                 onClick={() => removeFromCart(item.id)}
-                className="hover:scale-110 transition-transform"
+                className="cursor-pointer "
               >
-                <img src={remove_icon} alt="Remove" className="h-6 w-6" />
+                <img src={remove_icon} alt="Remove" className=" " />
               </button>
             </div>
           );
